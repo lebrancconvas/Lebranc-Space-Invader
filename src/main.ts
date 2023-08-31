@@ -1,6 +1,6 @@
 import { canvas, ctx, config } from './canvas';
 import { Player, Projectile, Enemy } from './components';
-import { keys, keydownAction, keyupAction } from './action';
+import { keys, keydownAction, keyupAction } from './actions';
 
 // Prepare the canvas.
 canvas.width = config.width;
