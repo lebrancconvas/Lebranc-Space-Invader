@@ -1,5 +1,7 @@
 import { ctx } from "../canvas";
 
+export const projectiles: Projectile[] = [];
+
 export class Projectile {
   x: number;
   y: number;
