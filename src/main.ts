@@ -18,7 +18,6 @@ function animate() {
   ctx.clearRect(0, 0, config.width, config.height);
 
   playerMovement(player);
-  player.draw();
 
   generateEnemy(10);
   shootProjectile();

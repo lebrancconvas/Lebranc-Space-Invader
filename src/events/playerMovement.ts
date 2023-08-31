@@ -9,4 +9,5 @@ export function playerMovement(player: Player) {
     const projectile = new Projectile(player.position.x + player.width / 2, player.position.y, 5, 'Yellow');
     projectiles.push(projectile);
   }
-}
+  player.draw();
+};
