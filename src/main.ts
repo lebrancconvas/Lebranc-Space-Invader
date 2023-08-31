@@ -1,5 +1,6 @@
 import { canvas, ctx, config } from './canvas';
-import { Player, Projectile } from './components';
+import { Player, Projectile, Enemy } from './components';
+import { keys, keydownAction, keyupAction } from './action';
 
 // Prepare the canvas.
 canvas.width = config.width;
@@ -7,46 +8,8 @@ canvas.height = config.height;
 canvas.style.backgroundColor = config.backgroundColor;
 
 // Code.
-
-const keys = {
-  left: {
-    pressed: false
-  },
-  right: {
-    pressed: false
-  },
-  space: {
-    pressed: false
-  }
-};
-
-window.addEventListener('keydown', (event: KeyboardEvent) => {
-  switch(event.code) {
-    case 'ArrowLeft':
-      keys.left.pressed = true;
-      break;
-    case 'ArrowRight':
-      keys.right.pressed = true;
-      break;
-    case 'Space':
-      keys.space.pressed = true;
-      break;
-  }
-});
-
-window.addEventListener('keyup', (event: KeyboardEvent) => {
-  switch(event.code) {
-    case 'ArrowLeft':
-      keys.left.pressed = false;
-      break;
-    case 'ArrowRight':
-      keys.right.pressed = false;
-      break;
-    case 'Space':
-      keys.space.pressed = false;
-      break;
-  }
-});
+window.addEventListener('keydown', keydownAction);
+window.addEventListener('keyup', keyupAction);
 
 const player = new Player();
 const projectiles: Projectile[] = [];
@@ -62,6 +25,10 @@ function animate() {
     projectiles.push(projectile);
   }
   player.draw();
+  for(let i = 1; i <= 10; i++) {
+    const enemy = new Enemy(i * 50, 50);
+    enemy.draw();
+  }
   projectiles.forEach((projectile: Projectile, index: number) => {
     if(projectile.y <= projectile.radius) {
       projectiles.splice(index, 1);
