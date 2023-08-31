@@ -1,4 +1,5 @@
 import { canvas, ctx, config } from './canvas';
+import { Player, Projectile } from './components';
 
 // Prepare the canvas.
 canvas.width = config.width;
@@ -6,75 +7,6 @@ canvas.height = config.height;
 canvas.style.backgroundColor = config.backgroundColor;
 
 // Code.
-class Player {
-  position: {
-    x: number;
-    y: number;
-  };
-  velocity: {
-    x: number;
-    y: number;
-  };
-  image!: HTMLImageElement;
-  width!: number;
-  height!: number;
-
-  constructor() {
-    this.position = {
-      x: canvas.width / 2 - 1,
-      y: canvas.height - 180
-    };
-
-    this.velocity = {
-      x: 10,
-      y: 10
-    }
-
-    const image = new Image();
-    image.src = '/assets/sprite/rocket.png';
-    image.onload = () => {
-      const scale = 0.15;
-      this.image = image;
-      this.width = image.width * scale;
-      this.height = image.height * scale;
-    };
-  }
-
-  draw() {
-    if(this.image) {
-      ctx.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
-    }
-  }
-
-
-}
-
-class Projectile {
-  x: number;
-  y: number;
-  radius: number;
-  color?: string;
-
-  constructor(x: number, y: number, radius: number, color?: string) {
-    this.x = x;
-    this.y = y;
-    this.radius = radius;
-    this.color = color;
-  }
-
-  draw() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-    ctx.fillStyle = this.color || 'White';
-    ctx.fill();
-    ctx.closePath();
-  }
-
-  update() {
-    this.draw();
-    this.y -= 10;
-  }
-};
 
 const keys = {
   left: {
