@@ -25,6 +25,6 @@ export class Projectile {
 
   update() {
     this.draw();
-    this.y -= 35;
+    this.y -= 20;
   }
 };
