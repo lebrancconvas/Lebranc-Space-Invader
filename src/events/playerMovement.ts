@@ -1,6 +1,7 @@
 import { keys } from "../actions";
 import { canvas } from "../canvas";
 import { Projectile, projectiles, Player } from "../components";
+import { audio } from "../audio";
 
 export function playerMovement(player: Player) {
   if (keys.left.pressed && player.position.x >= player.width / 2) player.position.x -= player.velocity.x;
@@ -8,6 +9,7 @@ export function playerMovement(player: Player) {
   else if (keys.space.pressed) {
     const projectile = new Projectile(player.position.x + player.width / 2, player.position.y, 5, 'Yellow');
     projectiles.push(projectile);
+    audio.shoot.play(); 
   }
   player.draw();
 };
