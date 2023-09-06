@@ -1,5 +1,5 @@
-import { Player, Projectile } from "../components";
+import { Enemy, Projectile } from "../components";
 
-export function checkCollision(player: Player, projectile: Projectile): boolean {
-  return projectile.y - projectile.radius <= player.position.y + player.height;
+export function checkCollision(enemy: Enemy, projectile: Projectile): boolean {
+  return projectile.y <= enemy.y + 50 && (projectile.x >= enemy.x && projectile.x <= enemy.x + 50);
 };

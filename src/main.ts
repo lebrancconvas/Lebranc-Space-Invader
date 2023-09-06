@@ -1,5 +1,5 @@
 import { canvas, ctx, config } from './canvas';
-import { Player } from './components';
+import { Player, Enemy } from './components';
 import { keydownAction, keyupAction } from './actions';
 import { playerMovement, generateEnemy, shootProjectile } from './events';
 
@@ -12,6 +12,7 @@ canvas.style.backgroundColor = config.backgroundColor;
 window.addEventListener('keydown', keydownAction);
 window.addEventListener('keyup', keyupAction);
 const player = new Player();
+const enemy = new Enemy(50, 50);
 
 function animate() {
   window.requestAnimationFrame(animate);
@@ -19,8 +20,10 @@ function animate() {
 
   playerMovement(player);
 
-  generateEnemy(10);
-  shootProjectile();
+  // generateEnemy(10);
+  enemy.draw();
+
+  shootProjectile(enemy);
 };
 
 animate();

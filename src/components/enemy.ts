@@ -13,4 +13,9 @@ export class Enemy {
     ctx.fillStyle = "Orange";
     ctx.fillRect(this.x, this.y, 50, 50);
   }
+
+  destroy() {
+    this.x = -10000000;
+    this.y = -10000000;
+  }
 }
